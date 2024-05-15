@@ -1,4 +1,9 @@
 FROM openjdk:17
+
+WORKDIR /app
+COPY . . 
+
 EXPOSE 8081
-ADD staging/TradeService.jar TradeService.jar
+
+ADD target/TradeService.jar TradeService.jar
 ENTRYPOINT ["java","-jar","/TradeService.jar"]
