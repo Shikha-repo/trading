@@ -12,22 +12,16 @@ jobs:
     environment: prod
     steps:
     - uses: actions/checkout@v4
-
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
+    - uses: actions/setup-java@v4
       with:
-          java-version: '11'  # You can specify a different JDK version
-
-    - name: Build with Maven
-      uses: maven/maven-action@v3  # Use the maven action
+        java-version: '17'
+        distribution: 'temurin'
+    - run: mvn --batch-mode --update-snapshots verify
+    - run: mkdir staging && cp target/*.jar staging
+    - uses: actions/upload-artifact@v4
       with:
-        goals: package  # Specify the goal to build the JAR
-
-    - name: Upload JAR artifact
-      uses: actions/upload-artifact@v3  # Upload the JAR as an artifact
-      with:
-        name: TradeService.jar
-        path: target/*.jar
+        name: Package
+        path: staging
         
     - name: Login to Docker Hub 
       # run: docker login --username ${{ secrets.prod.DOCKERHUB_PASSWORD }} --password-server
