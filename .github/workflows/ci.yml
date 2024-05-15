@@ -44,5 +44,5 @@ jobs:
       run: sudo docker pull shikha25/trade-image
 
     - name: docker run
-      run: sudo docker run shikha25/trade-image
+      run: sudo docker run -d shikha25/trade-image
       
