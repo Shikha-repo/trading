@@ -22,10 +22,10 @@ jobs:
           DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
 
     - name: Build Docker image
-      run: docker build -t shikha/TradeImage .
+      run: docker build -t shikha25/TradeImage .
 
     - name: Push Docker image
-      run: docker push shikha/TradeServiceImage
+      run: docker push shikha25/TradeServiceImage
       env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
