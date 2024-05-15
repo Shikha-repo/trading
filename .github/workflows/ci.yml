@@ -18,7 +18,7 @@ jobs:
         distribution: 'temurin'
     - run: mvn --batch-mode --update-snapshots verify
     - run: mkdir staging && cp target/*.jar staging
-    - run: ls 
+    - run: ls -la
         
     - name: Login to Docker Hub 
       # run: docker login --username ${{ secrets.prod.DOCKERHUB_PASSWORD }} --password-server
