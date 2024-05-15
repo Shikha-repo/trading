@@ -34,3 +34,15 @@ jobs:
       env:
           DOCKERHUB_USERNAME: ${{ secrets.prod.DOCKERHUB_USERNAME }}
           DOCKERHUB_PASSWORD: ${{ secrets.prod.DOCKERHUB_PASSWORD }}
+
+  deploy:
+    needs: build
+    runs-on: ec2trade
+    environment: prod
+    steps: 
+    - name: docker pull
+      run: docker pull shikha25/trade-image
+
+    - name: docker run
+      run: docker run shikha25/trade-image
+      
