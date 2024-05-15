@@ -13,6 +13,22 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+          java-version: '11'  # You can specify a different JDK version
+
+    - name: Build with Maven
+      uses: maven/maven-action@v3  # Use the maven action
+      with:
+        goals: package  # Specify the goal to build the JAR
+
+    - name: Upload JAR artifact
+      uses: actions/upload-artifact@v3  # Upload the JAR as an artifact
+      with:
+        name: TradeService.jar
+        path: target/*.jar
+        
     - name: Login to Docker Hub 
       # run: docker login --username ${{ secrets.prod.DOCKERHUB_PASSWORD }} --password-server
       run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
